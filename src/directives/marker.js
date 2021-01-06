@@ -1,3 +1,6 @@
+import { transform, transformExtent, get } from 'ol/proj';
+import { Point } from 'ol/geom';
+
 angular.module('openlayers-directive').directive('olMarker', function($log, $q, olMapDefaults, olHelpers) {
 
     var getMarkerDefaults = function() {
@@ -111,7 +114,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                             return parseInt(v, 10);
                         });
                     } else {
-                        coord = ol.proj.transform(coord, proj, 'EPSG:4326');
+                        coord = transform(coord, proj, 'EPSG:4326');
                     }
 
                     if (evt.type === 'pointerdown') {
@@ -201,7 +204,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
 
                     if (data.message || hasTranscluded) {
                         scope.message = attrs.message;
-                        pos = ol.proj.transform([data.lon, data.lat], data.projection,
+                        pos = transform([data.lon, data.lat], data.projection,
                             viewProjection);
                         label = createOverlay(element, pos);
                         map.addOverlay(label);
@@ -243,7 +246,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                                 if (data.projection === 'pixel') {
                                     pos = properties.coord;
                                 } else {
-                                    pos = ol.proj.transform([properties.lon, properties.lat],
+                                    pos = transform([properties.lon, properties.lat],
                                         data.projection, viewProjection);
                                 }
                                 label = createOverlay(element, pos);
@@ -315,7 +318,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                                 if (data.projection === 'pixel') {
                                     pos = data.coord;
                                 } else {
-                                    pos = ol.proj.transform([data.lon, data.lat],
+                                    pos = transform([data.lon, data.lat],
                                         data.projection, viewProjection);
                                 }
                                 label = createOverlay(element, pos);
@@ -371,12 +374,12 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                         if (properties.projection === 'pixel') {
                             requestedPosition = properties.coord;
                         } else {
-                            requestedPosition = ol.proj.transform([properties.lon, properties.lat], data.projection,
+                            requestedPosition = transform([properties.lon, properties.lat], data.projection,
                                 map.getView().getProjection());
                         }
 
                         if (!angular.equals(marker.getGeometry().getCoordinates(), requestedPosition)) {
-                            var geometry = new ol.geom.Point(requestedPosition);
+                            var geometry = new Point(requestedPosition);
                             marker.setGeometry(geometry);
                         }
                     }
@@ -398,7 +401,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                         if (data.projection === 'pixel') {
                             pos = data.coord;
                         } else {
-                            pos = ol.proj.transform([properties.lon, properties.lat], data.projection,
+                            pos = transform([properties.lon, properties.lat], data.projection,
                                 viewProjection);
                         }
                         label = createOverlay(element, pos);

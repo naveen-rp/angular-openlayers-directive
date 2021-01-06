@@ -1,3 +1,7 @@
+import { Geolocation } from 'ol/Geolocation';
+import { transform, transformExtent, get } from 'ol/proj';
+import { unByKey } from 'ol/Observable';
+
 angular.module('openlayers-directive').directive('olCenter', function($log, $location, olMapDefaults, olHelpers) {
 
     return {
@@ -100,8 +104,8 @@ angular.module('openlayers-directive').directive('olCenter', function($log, $loc
 
                     if (center.autodiscover) {
                         if (!geolocation) {
-                            geolocation = new ol.Geolocation({
-                                projection: ol.proj.get(center.projection)
+                            geolocation = new Geolocation({
+                                projection: get(center.projection)
                             });
 
                             geolocation.on('change', function() {
@@ -132,7 +136,7 @@ angular.module('openlayers-directive').directive('olCenter', function($log, $loc
                             view.setCenter(center.coord);
                         } else {
                             var actualCenter =
-                                ol.proj.transform(viewCenter, defaults.view.projection, center.projection);
+                                transform(viewCenter, defaults.view.projection, center.projection);
                             if (!(actualCenter[1] === center.lat && actualCenter[0] === center.lon)) {
                                 setCenter(view, defaults.view.projection, center, map);
                             }
@@ -160,7 +164,7 @@ angular.module('openlayers-directive').directive('olCenter', function($log, $loc
                         }
 
                         if (scope.center) {
-                            var proj = ol.proj.transform(center, defaults.view.projection, scope.center.projection);
+                            var proj = transform(center, defaults.view.projection, scope.center.projection);
                             scope.center.lat = proj[1];
                             scope.center.lon = proj[0];
 
@@ -172,14 +176,14 @@ angular.module('openlayers-directive').directive('olCenter', function($log, $loc
                                 var extent = view.calculateExtent(map.getSize());
                                 var centerProjection = scope.center.projection;
                                 var viewProjection = defaults.view.projection;
-                                scope.center.bounds = ol.proj.transformExtent(extent, viewProjection, centerProjection);
+                                scope.center.bounds = transformExtent(extent, viewProjection, centerProjection);
                             }
                         }
                     });
                 });
 
                 olScope.$on('$destroy', function() {
-                    ol.Observable.unByKey(moveEndEventKey);
+                    unByKey(moveEndEventKey);
                 });
             });
         }
