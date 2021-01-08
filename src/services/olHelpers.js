@@ -10,6 +10,7 @@ import * as olTilegrid from 'ol/tilegrid';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import WMTS from 'ol/tilegrid/WMTS';
 import Overlay from 'ol/Overlay';
+import View from 'ol/View';
 
 angular.module('openlayers-directive').factory('olHelpers', function($q, $log, $http) {
 
@@ -831,7 +832,7 @@ angular.module('openlayers-directive').factory('olHelpers', function($q, $log, $
                 viewConfig.resolutions = view.resolutions;
             }
 
-            return new ol.View(viewConfig);
+            return new View(viewConfig);
         },
 
         // Determine if a reference is defined and not null

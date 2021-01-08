@@ -19,7 +19,7 @@
   "dependencies": {
     "angular": "~1.4.8",
     "angular-sanitize": "1.7.9",
-    "ol": "5.0.0"
+    "ol": "^6.5.0"
   },
   "devDependencies": {
     "bower": "^1.8.8",
