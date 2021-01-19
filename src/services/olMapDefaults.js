@@ -1,4 +1,6 @@
-import { Icon } from "ol/style";
+// import { Icon } from "ol/style";
+import {style} from 'ol-prebuilt';
+let Icon = style.Icon;
 
 angular
     .module("openlayers-directive")

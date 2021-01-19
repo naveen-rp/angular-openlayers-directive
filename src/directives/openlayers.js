@@ -1,7 +1,9 @@
-import { defaults as controlDefaults } from 'ol/control';
-import { defaults as interactionDefaults } from 'ol/interaction';
-import Map from 'ol/Map';
-import { transform } from 'ol/proj';
+// import { defaults as controlDefaults } from 'ol/control';
+// import { defaults as interactionDefaults } from 'ol/interaction';
+// import Map from 'ol/Map';
+// import { transform } from 'ol/proj';
+
+import {control, interaction, Map, proj} from 'ol-prebuilt';
 
 export default angular.module('openlayers-directive', ['ngSanitize']).directive('openlayers', function($log, $q, $compile, olHelpers,
         olMapDefaults, olData) {
@@ -67,12 +69,12 @@ export default angular.module('openlayers-directive', ['ngSanitize']).directive(
                     defaults.center.zoom = parseFloat(attrs.zoom);
                 }
 
-                var controls = controlDefaults(defaults.controls);
-                var interactions = interactionDefaults(defaults.interactions);
+                var controls = control.defaults(defaults.controls);
+                var interactions = interaction.defaults(defaults.interactions);
                 var view = createView(defaults.view);
 
                 // Create the Openlayers Map Object with the options
-                var map = new Map({
+                var map = new ol.Map({
                     target: element[0],
                     controls: controls,
                     interactions: interactions,
@@ -102,7 +104,7 @@ export default angular.module('openlayers-directive', ['ngSanitize']).directive(
                 }
 
                 if (!isDefined(attrs.olCenter)) {
-                    var c = transform([defaults.center.lon,
+                    var c = proj.transform([defaults.center.lon,
                             defaults.center.lat
                         ],
                         defaults.center.projection, view.getProjection()

@@ -1,4 +1,5 @@
-import { unByKey } from "ol/Observable";
+// import { unByKey } from "ol/Observable";
+import { Observable } from "ol-prebuilt";
 
 angular
     .module("openlayers-directive")
@@ -55,7 +56,7 @@ angular
                     );
 
                     olScope.$on("$destroy", function () {
-                        unByKey(rotationEventKey);
+                        Observable.unByKey(rotationEventKey);
                     });
                 });
             },

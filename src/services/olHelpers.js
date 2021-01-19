@@ -1,16 +1,19 @@
-import * as olControl from 'ol/control';
-import * as olStyle from 'ol/style';
-import * as proj from 'ol/proj';
-import * as olSource from 'ol/source';
-import * as olLayer from 'ol/layer';
-import Feature from 'ol/Feature';
-import * as olGeom from 'ol/geom';
-import * as olFormat from 'ol/format';
-import * as olTilegrid from 'ol/tilegrid';
-import TileGrid from 'ol/tilegrid/TileGrid';
-import WMTS from 'ol/tilegrid/WMTS';
-import Overlay from 'ol/Overlay';
-import View from 'ol/View';
+// import * as olControl from 'ol/control';
+// import * as olStyle from 'ol/style';
+// import * as proj from 'ol/proj';
+// import * as olSource from 'ol/source';
+// import * as olLayer from 'ol/layer';
+// import Feature from 'ol/Feature';
+// import * as olGeom from 'ol/geom';
+// import * as olFormat from 'ol/format';
+// import * as olTilegrid from 'ol/tilegrid';
+// import TileGrid from 'ol/tilegrid/TileGrid';
+// import WMTS from 'ol/tilegrid/WMTS';
+// import Overlay from 'ol/Overlay';
+// import View from 'ol/View';
+
+import { View, Overlay, tilegrid as olTilegrid, format as olFormat, geom as olGeom, Feature, layer as olLayer, source as olSource, proj, style as olStyle, control as olControl} from 'ol-prebuilt';
+let {WMTS, TileGrid} = olTilegrid;
 
 angular.module('openlayers-directive').factory('olHelpers', function($q, $log, $http) {
 

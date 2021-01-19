@@ -1,5 +1,7 @@
-import { transform, transformExtent, get } from 'ol/proj';
-import { Point } from 'ol/geom';
+// import { transform, transformExtent, get } from 'ol-prebuilt/proj';
+// import { Point } from 'ol-prebuilt/geom';
+
+import { proj, geom } from 'ol-prebuilt';
 
 angular.module('openlayers-directive').directive('olMarker', function($log, $q, olMapDefaults, olHelpers) {
 
@@ -114,7 +116,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                             return parseInt(v, 10);
                         });
                     } else {
-                        coord = transform(coord, proj, 'EPSG:4326');
+                        coord = proj.transform(coord, proj, 'EPSG:4326');
                     }
 
                     if (evt.type === 'pointerdown') {
@@ -204,7 +206,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
 
                     if (data.message || hasTranscluded) {
                         scope.message = attrs.message;
-                        pos = transform([data.lon, data.lat], data.projection,
+                        pos = proj.transform([data.lon, data.lat], data.projection,
                             viewProjection);
                         label = createOverlay(element, pos);
                         map.addOverlay(label);
@@ -246,7 +248,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                                 if (data.projection === 'pixel') {
                                     pos = properties.coord;
                                 } else {
-                                    pos = transform([properties.lon, properties.lat],
+                                    pos = proj.transform([properties.lon, properties.lat],
                                         data.projection, viewProjection);
                                 }
                                 label = createOverlay(element, pos);
@@ -318,7 +320,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                                 if (data.projection === 'pixel') {
                                     pos = data.coord;
                                 } else {
-                                    pos = transform([data.lon, data.lat],
+                                    pos = proj.transform([data.lon, data.lat],
                                         data.projection, viewProjection);
                                 }
                                 label = createOverlay(element, pos);
@@ -374,12 +376,12 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                         if (properties.projection === 'pixel') {
                             requestedPosition = properties.coord;
                         } else {
-                            requestedPosition = transform([properties.lon, properties.lat], data.projection,
+                            requestedPosition = proj.transform([properties.lon, properties.lat], data.projection,
                                 map.getView().getProjection());
                         }
 
                         if (!angular.equals(marker.getGeometry().getCoordinates(), requestedPosition)) {
-                            var geometry = new Point(requestedPosition);
+                            var geometry = new geom.Point(requestedPosition);
                             marker.setGeometry(geometry);
                         }
                     }
@@ -401,7 +403,7 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
                         if (data.projection === 'pixel') {
                             pos = data.coord;
                         } else {
-                            pos = transform([properties.lon, properties.lat], data.projection,
+                            pos = proj.transform([properties.lon, properties.lat], data.projection,
                                 viewProjection);
                         }
                         label = createOverlay(element, pos);
