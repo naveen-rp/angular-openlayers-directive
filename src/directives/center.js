@@ -4,7 +4,8 @@
 
 import {Observable, proj, Geolocation} from 'ol-prebuilt';
 
-angular.module('openlayers-directive').directive('olCenter', function($log, $location, olMapDefaults, olHelpers) {
+angular.module('openlayers-directive').directive('olCenter', 
+["$log", "$location", "olMapDefaults", "olHelpers", function($log, $location, olMapDefaults, olHelpers) {
 
     return {
         restrict: 'A',
@@ -166,9 +167,9 @@ angular.module('openlayers-directive').directive('olCenter', function($log, $loc
                         }
 
                         if (scope.center) {
-                            var proj = proj.transform(center, defaults.view.projection, scope.center.projection);
-                            scope.center.lat = proj[1];
-                            scope.center.lon = proj[0];
+                            var projected = proj.transform(center, defaults.view.projection, scope.center.projection);
+                            scope.center.lat = projected[1];
+                            scope.center.lon = projected[0];
 
                             // Notify the controller about a change in the center position
                             olHelpers.notifyCenterUrlHashChanged(olScope, scope.center, $location.search());
@@ -190,4 +191,4 @@ angular.module('openlayers-directive').directive('olCenter', function($log, $loc
             });
         }
     };
-});
+}]);

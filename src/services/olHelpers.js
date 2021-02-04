@@ -15,7 +15,8 @@
 import { View, Overlay, tilegrid as olTilegrid, format as olFormat, geom as olGeom, Feature, layer as olLayer, source as olSource, proj, style as olStyle, control as olControl} from 'ol-prebuilt';
 let {WMTS, TileGrid} = olTilegrid;
 
-angular.module('openlayers-directive').factory('olHelpers', function($q, $log, $http) {
+angular.module('openlayers-directive').factory('olHelpers', 
+["$q", "$log", "$http", function($q, $log, $http) {
 
     var isDefined = function(value) {
         return angular.isDefined(value);
@@ -1198,4 +1199,4 @@ angular.module('openlayers-directive').factory('olHelpers', function($q, $log, $
             return ov;
         }
     };
-});
+}]);

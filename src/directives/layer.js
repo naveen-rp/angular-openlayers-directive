@@ -1,4 +1,5 @@
-angular.module('openlayers-directive').directive('olLayer', function($log, $q, olMapDefaults, olHelpers) {
+angular.module('openlayers-directive').directive('olLayer', 
+["$log", "$q", "olMapDefaults", "olHelpers", function($log, $q, olMapDefaults, olHelpers) {
 
     return {
         restrict: 'E',
@@ -229,4 +230,4 @@ angular.module('openlayers-directive').directive('olLayer', function($log, $q, o
             });
         }
     };
-});
+}]);

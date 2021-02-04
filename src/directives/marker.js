@@ -3,7 +3,8 @@
 
 import { proj, geom } from 'ol-prebuilt';
 
-angular.module('openlayers-directive').directive('olMarker', function($log, $q, olMapDefaults, olHelpers) {
+angular.module('openlayers-directive').directive('olMarker', 
+["$log", "$q", "olMapDefaults", "olHelpers", function($log, $q, olMapDefaults, olHelpers) {
 
     var getMarkerDefaults = function() {
         return {
@@ -438,4 +439,4 @@ angular.module('openlayers-directive').directive('olMarker', function($log, $q, 
             });
         }
     };
-});
+}]);

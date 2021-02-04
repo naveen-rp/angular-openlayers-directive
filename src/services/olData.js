@@ -1,4 +1,5 @@
-angular.module('openlayers-directive').service('olData', function($log, $q) {
+angular.module('openlayers-directive').service('olData', 
+["$log","$q",function($log, $q) {
 
     var maps = {};
 
@@ -74,4 +75,4 @@ angular.module('openlayers-directive').service('olData', function($log, $q) {
         }
     };
 
-});
+}]);

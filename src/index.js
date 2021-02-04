@@ -1,4 +1,4 @@
-import * as module from './directives/openlayers';
+import ngModule from './directives/openlayers';
 import './directives/path';
 import './directives/center';
 import './directives/control';
@@ -8,5 +8,6 @@ import './directives/view';
 import './services/olData';
 import './services/olHelpers';
 import './services/olMapDefaults';
+console.log(ngModule);
 
-export default module.name;
+export default ngModule.name;

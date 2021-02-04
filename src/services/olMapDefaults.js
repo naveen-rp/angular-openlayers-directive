@@ -4,7 +4,8 @@ let Icon = style.Icon;
 
 angular
     .module("openlayers-directive")
-    .factory("olMapDefaults", function ($q, olHelpers) {
+    .factory("olMapDefaults", 
+    ["$q", "olHelpers", function ($q, olHelpers) {
         var base64icon =
             "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAApCAYAAADAk4LOAAAGmklEQVRYw" +
             "7VXeUyTZxjvNnfELFuyIzOabermMZEeQC/OclkO49CpOHXOLJl/CAURuYbQi3KLgEhbrhZ1aDwmaoGq" +
@@ -172,4 +173,4 @@ angular
                 return newDefaults;
             },
         };
-    });
+    }]);

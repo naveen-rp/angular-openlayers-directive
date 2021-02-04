@@ -5,8 +5,8 @@
 
 import {control, interaction, Map, proj} from 'ol-prebuilt';
 
-export default angular.module('openlayers-directive', ['ngSanitize']).directive('openlayers', function($log, $q, $compile, olHelpers,
-        olMapDefaults, olData) {
+export default angular.module('openlayers-directive', ['ngSanitize']).directive('openlayers', 
+["$log", "$q", "$compile", "olHelpers", "olMapDefaults", "olData", function($log, $q, $compile, olHelpers, olMapDefaults, olData) {
         return {
             restrict: 'EA',
             transclude: true,
@@ -18,7 +18,7 @@ export default angular.module('openlayers-directive', ['ngSanitize']).directive(
                 events: '=olEvents'
             },
             template: '<div class="angular-openlayers-map" ng-transclude></div>',
-            controller: function($scope) {
+            controller: ["$scope", function($scope) {
                 var _map = $q.defer();
                 $scope.getMap = function() {
                     return _map.promise;
@@ -31,7 +31,7 @@ export default angular.module('openlayers-directive', ['ngSanitize']).directive(
                 this.getOpenlayersScope = function() {
                     return $scope;
                 };
-            },
+            }],
             link: function(scope, element, attrs) {
                 var isDefined = olHelpers.isDefined;
                 var createLayer = olHelpers.createLayer;
@@ -74,7 +74,7 @@ export default angular.module('openlayers-directive', ['ngSanitize']).directive(
                 var view = createView(defaults.view);
 
                 // Create the Openlayers Map Object with the options
-                var map = new ol.Map({
+                var map = new Map({
                     target: element[0],
                     controls: controls,
                     interactions: interactions,
@@ -125,4 +125,4 @@ export default angular.module('openlayers-directive', ['ngSanitize']).directive(
 
             }
         };
-    });
+    }]);

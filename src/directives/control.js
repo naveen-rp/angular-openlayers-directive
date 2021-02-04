@@ -1,5 +1,6 @@
 angular.module('openlayers-directive')
-.directive('olControl', function($log, $q, olData, olMapDefaults, olHelpers) {
+.directive('olControl', 
+["$log", "$q", "olData", "olMapDefaults", "olHelpers", function($log, $q, olData, olMapDefaults, olHelpers) {
     return {
         restrict: 'E',
         scope: {
@@ -66,4 +67,4 @@ angular.module('openlayers-directive')
 
         }
     };
-});
+}]);

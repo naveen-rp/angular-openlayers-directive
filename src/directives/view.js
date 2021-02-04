@@ -3,7 +3,8 @@ import { Observable } from "ol-prebuilt";
 
 angular
     .module("openlayers-directive")
-    .directive("olView", function ($log, $q, olData, olMapDefaults, olHelpers) {
+    .directive("olView", 
+    ["$log", "$q", "olData", "olMapDefaults", "olHelpers", function ($log, $q, olData, olMapDefaults, olHelpers) {
         return {
             restrict: "A",
             scope: false,
@@ -61,4 +62,4 @@ angular
                 });
             },
         };
-    });
+    }]);
