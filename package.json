@@ -19,7 +19,7 @@
   "dependencies": {
     "angular": "~1.4.8",
     "angular-sanitize": "1.7.9",
-    "ol-prebuilt": "https://github.com/sravikiran/ol-prebuilt.git"
+    "ol-prebuilt": "https://github.com/sravikiran/ol-prebuilt#1b69ca43162780110591699c0c856f7ffbe26c3c"
   },
   "devDependencies": {
     "bower": "^1.8.8",
