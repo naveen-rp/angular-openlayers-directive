@@ -159,6 +159,11 @@ angular.module('openlayers-directive').directive('olCenter',
                         }
 
                         var center = map.getView().getCenter();
+
+                        if(center.length > 0 && Number.isNaN(center[0])|| Number.isNaN(center[1])){
+							center = scope.center;
+						}
+
                         scope.center.zoom = view.getZoom();
 
                         if (defaults.view.projection === 'pixel' || scope.center.projection === 'pixel') {
