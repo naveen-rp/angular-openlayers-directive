@@ -8,6 +8,5 @@ import './directives/view';
 import './services/olData';
 import './services/olHelpers';
 import './services/olMapDefaults';
-console.log(ngModule);
 
 export default ngModule.name;
