@@ -716,7 +716,7 @@ angular.module('openlayers-directive').factory('olHelpers',
             // opt-out -> default tries to show an attribution
             if (!(source.attribution === false)) { // jshint ignore:line
                 // we got some HTML so display that as the attribution
-                attributions.unshift(new olControl.Attribution({html: source.attribution}));
+                attributions.unshift(source.attribution);
             }
         } else {
             // try to infer automatically
@@ -725,7 +725,7 @@ angular.module('openlayers-directive').factory('olHelpers',
                 attributions.unshift(attrib);
             }
         }
-
+        
         return attributions;
     };
 
